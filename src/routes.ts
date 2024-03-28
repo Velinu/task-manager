@@ -1,8 +1,8 @@
 import { Router } from 'express'
 
 const routes = Router()
-routes.get('/', (req,res) =>{
-    res.send('o pedro é viado')
+routes.get('/task', (req,res) =>{
+    
 })
 
 export {routes}
