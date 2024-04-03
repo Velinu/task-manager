@@ -21,6 +21,10 @@ export interface iTaskService{
     getById(id: number)
     getAll()
     post(task: Task)
-    patch()
+    patch(dataPatch: Task)
     delete(id: number)
+}
+
+export interface iTaskController{
+    getAll(req,res)
 }

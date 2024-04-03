@@ -1,8 +1,6 @@
 import { Router } from 'express'
 
 const routes = Router()
-routes.get('/task', (req,res) =>{
-    
-})
+routes.get('/task', taskController)
 
 export {routes}

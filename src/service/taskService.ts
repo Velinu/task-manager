@@ -43,20 +43,22 @@ class taskService implements iTaskService{
         }
     }
 
-    patch(id: number, dataPatch:   {id: number,
-                                title: string,
-                                descr: string,
-                                creatDate: Date,
-                                conclDate?: Date,
-                                type: string,
-                                category?: string,
-                                status: ["Pendente", "Em andamento", "Concluída"],
-                                userId: number }) {
-        throw new Error("Method not implemented.");
+    async patch(dataPatch: Task) {
+        try{
+            const taskPatch = await taskModel.findOneAndUpdate({id: dataPatch.id}, dataPatch)
+            return taskPatch;
+        }catch(e) {
+            throw new Error(`Error patching task: ${e}`);
+        }
     }
 
-    delete(id: number) {
-        throw new Error("Method not implemented.");
+    async delete(id: number) {
+       try{
+            const taskDelete = await taskModel.deleteOne({id: id})
+            return taskDelete
+       }catch(e){
+            throw new Error(`Error delete task: ${e}`)
+       }
     }
 
 }
