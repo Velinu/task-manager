@@ -27,7 +27,7 @@ class taskService implements iTaskService{
 
     async post(task: Task) {
         try{
-            const lastTask = await taskModel.findOne({}, {}, { sort: { 'createdAt': -1 } });
+            const lastTask = await taskModel.findOne({}, {}, { sort: { id: -1 } });
             if (lastTask) {
                 task.id = lastTask.id + 1
             } else {

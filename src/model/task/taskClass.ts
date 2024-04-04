@@ -8,7 +8,7 @@ export class Task implements ITask{
     conclDate?: Date;
     type: string;
     category?: string | undefined;
-    status: ["Pendente", "Em andamento", "Concluída"];
+    status: string;
     userId: number;
     constructor(
         id: number,
@@ -16,7 +16,7 @@ export class Task implements ITask{
         descr: string,
         creatDate: Date,
         type: string,
-        status: ["Pendente", "Em andamento", "Concluída"],
+        status: string,
         userId: number,
         category?: string,
         conclDate?: Date,

@@ -1,7 +1,7 @@
 import { Schema } from "mongoose";
 import { ITask } from "../../interfaces/task/taskInterfaces";
 const taskSchema: Schema = new Schema<ITask>({
-    id: { type: Number},
+    id: { type: Number, unique: true},
     title: { type: String, max: 20},
     descr: { type: String, max: 50},
     creatDate: { type: Date},
