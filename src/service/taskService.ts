@@ -60,5 +60,6 @@ class taskService implements iTaskService{
             throw new Error(`Error delete task: ${e}`)
        }
     }
-
 }
+
+export default new taskService()
