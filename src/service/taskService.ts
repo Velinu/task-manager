@@ -43,9 +43,9 @@ class taskService implements iTaskService{
         }
     }
 
-    async patch(dataPatch: Task) {
+    async patch(id: number,dataPatch: any) {
         try{
-            const taskPatch = await taskModel.findOneAndUpdate({id: dataPatch.id}, dataPatch)
+            const taskPatch = await taskModel.findOneAndUpdate({id: id}, dataPatch)
             return taskPatch;
         }catch(e) {
             throw new Error(`Error patching task: ${e}`);

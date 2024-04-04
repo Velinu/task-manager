@@ -41,16 +41,27 @@ class taskController implements iTaskController{
     }
 
     async patch(req: Request, res: Response) {
-        if(listaStatus.indexOf(status) <= -1){
-            throw new Error("Status não existente")
+        try{
+            const { title, descr, type, 
+                    status, category, conclDate } = req.body;
+
+            const task = await taskService.patch(Number(req.params.id), { title, descr, type, 
+                                                                           status, category, conclDate })
+            
+            res.status(200).send(task)
+        }catch(e){
+            res.send(`Não foi possível atualizar a task: ${e}`)
         }
-        throw new Error("Method not implemented.");
+        
     }
+
+    
     async delete(req: Request, res: Response) {
         try{
-
+            const taskDeletes = taskService.delete(Number(req.params.id))
+            res.status(200).send(taskDeletes)
         }catch(e){
-
+            res.status(500).send(`Não foi possível excluír a task: ${e}`)
         }
     }
     get: any;

@@ -22,7 +22,7 @@ export interface iTaskService{
     getById(id: number): void
     getAll(): void
     post(task: Task): void
-    patch(dataPatch: Task): void
+    patch(id: number, dataPatch: any): void
     delete(id: number): void
 }
 
