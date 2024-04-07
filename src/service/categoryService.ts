@@ -1,8 +1,6 @@
-import { User } from "src/model/user/userClass";
-import { userModel } from "src/model/user/userModel";
 import { iCategoryService } from "src/interfaces/category/categoryInterface";
-import { categoryModel } from "src/model/category/categoryModel";
-import { Category } from "src/model/category/categoryClass";
+import { categoryModel } from "../model/category/categoryModel";
+import { Category } from "../model/category/categoryClass";
 
 class categoryService implements iCategoryService{
 

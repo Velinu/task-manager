@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import { iCategoryController } from 'src/interfaces/category/categoryInterface';
-import categoryService from 'src/service/categoryService';
-import { Category } from 'src/model/category/categoryClass';
+import categoryService from '../service/categoryService';
+import { Category } from '../model/category/categoryClass';
 
 class categoryController implements iCategoryController{
     async getById(req: Request, res: Response) {

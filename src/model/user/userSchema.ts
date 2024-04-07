@@ -6,5 +6,5 @@ const userSchema: Schema = new Schema<IUser>({
     peso: { type: Number},
     senha: { type: String, min: 8, max: 20},
     email: { type: String, max: 50},
-})
+}, {versionKey: false})
 export default userSchema

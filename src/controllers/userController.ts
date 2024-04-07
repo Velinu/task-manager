@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import { iUserController } from "src/interfaces/user/userInterface";
-import userService from "src/service/userService";
-import { User } from 'src/model/user/userClass';
+import userService from "../service/userService"
+import { User } from '../model/user/userClass';
 
 class userController implements iUserController{
     async getById(req: Request, res: Response) {

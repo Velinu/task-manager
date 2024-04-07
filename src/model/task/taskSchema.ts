@@ -10,5 +10,5 @@ const taskSchema: Schema = new Schema<ITask>({
     category: { type: String, required: false, max: 20},
     status: {   enum: ["Pendente", "Em andamento", "Concluída"]},
     userId: { type: Number},
-})
+} , {versionKey: false})
 export default taskSchema
