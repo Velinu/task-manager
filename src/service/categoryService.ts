@@ -7,6 +7,9 @@ class categoryService implements iCategoryService{
     async getById(id: number) {
         try{
             const res = await categoryModel.find({id: id})
+            if (res.length == 0){
+                throw new Error("No category found");
+            } 
             return res
         }catch(e){
             throw new Error("Category not found");
@@ -17,6 +20,9 @@ class categoryService implements iCategoryService{
     async getAll() {
         try{
             const res = await categoryModel.find()
+            if (res.length == 0){
+                throw new Error("No category found");
+            } 
             return res 
         }catch(e){
             throw new Error("No category found");

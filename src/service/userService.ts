@@ -7,6 +7,9 @@ class userService implements iUserService{
     async getById(id: number) {
         try{
             const res = await userModel.find({id: id})
+            if (res.length == 0){
+                throw new Error("No category found");
+            } 
             return res
         }catch(e){
             throw new Error("User not found");
@@ -17,6 +20,9 @@ class userService implements iUserService{
     async getAll() {
         try{
             const res = await userModel.find()
+            if (res.length == 0){
+                throw new Error("No category found");
+            } 
             return res 
         }catch(e){
             throw new Error("No user found");

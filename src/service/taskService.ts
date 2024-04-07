@@ -7,6 +7,9 @@ class taskService implements iTaskService{
     async getById(id: number) {
         try{
             const res = await taskModel.find({id: id})
+            if (res.length == 0){
+                throw new Error("No category found");
+            } 
             return res
         }catch(e){
             throw new Error("Task not found");
@@ -17,6 +20,9 @@ class taskService implements iTaskService{
     async getAll() {
         try{
             const res = await taskModel.find()
+            if (res.length == 0){
+                throw new Error("No category found");
+            } 
             return res 
         }catch(e){
             throw new Error("No task found");
