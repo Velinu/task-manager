@@ -1,4 +1,4 @@
-import { iUserService } from "src/interfaces/task/userInterface";
+import { iUserService } from "src/interfaces/user/userInterface";
 import { Task } from "../model/task/taskClass";
 import { taskModel } from "../model/task/taskModel";
 import { User } from "src/model/user/userClass";

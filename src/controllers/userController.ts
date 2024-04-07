@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { iUserController } from "src/interfaces/task/userInterface";
+import { iUserController } from "src/interfaces/user/userInterface";
 import userService from "src/service/userService";
 import { User } from 'src/model/user/userClass';
 

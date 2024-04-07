@@ -1,4 +1,4 @@
-import { IUser } from "src/interfaces/task/userInterface";
+import { IUser } from "src/interfaces/user/userInterface";
 
 export class User implements IUser{
     id: number;
