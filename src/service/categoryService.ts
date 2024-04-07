@@ -8,11 +8,11 @@ class categoryService implements iCategoryService{
         try{
             const res = await categoryModel.find({id: id})
             if (res.length == 0){
-                throw new Error("No category found");
+                throw new Error();
             } 
             return res
         }catch(e){
-            throw new Error("Category not found");
+            throw new Error();
         }
         
     }
@@ -21,11 +21,11 @@ class categoryService implements iCategoryService{
         try{
             const res = await categoryModel.find()
             if (res.length == 0){
-                throw new Error("No category found");
+                throw new Error();
             } 
             return res 
         }catch(e){
-            throw new Error("No category found");
+            throw new Error();
         }
     }
 

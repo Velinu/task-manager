@@ -8,11 +8,11 @@ class taskService implements iTaskService{
         try{
             const res = await taskModel.find({id: id})
             if (res.length == 0){
-                throw new Error("No category found");
+                throw new Error();
             } 
             return res
         }catch(e){
-            throw new Error("Task not found");
+            throw new Error();
         }
         
     }
@@ -21,11 +21,11 @@ class taskService implements iTaskService{
         try{
             const res = await taskModel.find()
             if (res.length == 0){
-                throw new Error("No category found");
+                throw new Error();
             } 
             return res 
         }catch(e){
-            throw new Error("No task found");
+            throw new Error();
         }
     }
 

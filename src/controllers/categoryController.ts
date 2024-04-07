@@ -9,7 +9,7 @@ class categoryController implements iCategoryController{
             const category = await categoryService.getById(Number(req.params.id))
             res.status(200).send(category)
         }catch(e){
-            res.status(404).send('Nenhuma Category encontrado')
+            res.status(404).send('Nenhuma category encontrado')
         }
     }
 

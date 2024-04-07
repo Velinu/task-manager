@@ -9,7 +9,7 @@ class userController implements iUserController{
             const task = await userService.getById(Number(req.params.id))
             res.status(200).send(task)
         }catch(e){
-            res.status(404).send('Nenhum User encontrado')
+            res.status(404).send('Nenhum user encontrado')
         }
     }
 
@@ -66,7 +66,7 @@ class userController implements iUserController{
             const user = await userService.getAll()
             res.send(user)
         }catch(e){
-            res.status(404).send('Nenhuma task encontrada')
+            res.status(404).send('Nenhum user encontrado')
         }
     }
 }

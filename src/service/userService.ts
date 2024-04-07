@@ -21,11 +21,11 @@ class userService implements iUserService{
         try{
             const res = await userModel.find()
             if (res.length == 0){
-                throw new Error("No category found");
+                throw new Error();
             } 
             return res 
         }catch(e){
-            throw new Error("No user found");
+            throw new Error();
         }
     }
 
