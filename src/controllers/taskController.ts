@@ -55,7 +55,7 @@ class taskController implements iTaskController{
         
     }
 
-    
+     
     async delete(req: Request, res: Response) {
         try{
             const taskDeletes = taskService.delete(Number(req.params.id))

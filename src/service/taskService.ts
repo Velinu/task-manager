@@ -6,10 +6,9 @@ class taskService implements iTaskService{
 
     async getById(id: number) {
         try{
-            const res = await taskModel.findById(id)
+            const res = await taskModel.find({id: id})
             return res
         }catch(e){
-            console.log(e)
             throw new Error("Task not found");
         }
         
@@ -20,7 +19,6 @@ class taskService implements iTaskService{
             const res = await taskModel.find()
             return res 
         }catch(e){
-            console.log(e)
             throw new Error("No task found");
         }
     }
