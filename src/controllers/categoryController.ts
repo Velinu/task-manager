@@ -36,13 +36,11 @@ class categoryController implements iCategoryController{
 
     async patch(req: Request, res: Response) {
         try{
-            const { title, descr, type, 
-                    status, category, conclDate } = req.body;
+            const { nome, cor } = req.body;
 
-            const task = await categoryService.patch(Number(req.params.id), { title, descr, type, 
-                                                                           status, category, conclDate })
+            const category = await categoryService.patch(Number(req.params.id), { nome, cor })
             
-            res.status(200).send(task)
+            res.status(200).send(category)
         }catch(e){
             res.send(`Não foi possível atualizar a category: ${e}`)
         }
@@ -52,8 +50,8 @@ class categoryController implements iCategoryController{
      
     async delete(req: Request, res: Response) {
         try{
-            const userDelete = categoryService.delete(Number(req.params.id))
-            res.status(200).send(userDelete)
+            const categoryDelete = await categoryService.delete(Number(req.params.id))
+            res.status(200).send(categoryDelete)
         }catch(e){
             res.status(500).send(`Não foi possível excluír a category: ${e}`)
         }
@@ -61,8 +59,8 @@ class categoryController implements iCategoryController{
     get: any;
     async getAll(req: any, res: any) {
         try{
-            const user = await categoryService.getAll()
-            res.send(user)
+            const category = await categoryService.getAll()
+            res.send(category)
         }catch(e){
             res.status(404).send('Nenhuma category encontrada')
         }

@@ -16,7 +16,7 @@ class taskController implements iTaskController{
     async post(req: Request, res: Response) {
         try{
             const { title, descr, creatDate, type, 
-                    status, userId, category } = req.body;
+                    userId, category } = req.body;
 
             if ( title && descr && creatDate && type && userId) {
                 
@@ -64,10 +64,19 @@ class taskController implements iTaskController{
             res.status(500).send(`Não foi possível excluír a task: ${e}`)
         }
     }
-    get: any;
     async getAll(req: any, res: any) {
         try{
             const tasks = await taskService.getAll()
+            res.send(tasks)
+        }catch(e){
+            res.status(404).send('Nenhuma task encontrada')
+        }
+    }
+
+    async getAllByCategory(req: Request, res: Response){
+        try{
+            const tasks = await taskService.getAllByCategory(Number(req.params.category))
+            tasks
             res.send(tasks)
         }catch(e){
             res.status(404).send('Nenhuma task encontrada')

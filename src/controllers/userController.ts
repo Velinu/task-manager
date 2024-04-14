@@ -60,7 +60,6 @@ class userController implements iUserController{
             res.status(500).send(`Não foi possível excluír o User: ${e}`)
         }
     }
-    get: any;
     async getAll(req: any, res: any) {
         try{
             const user = await userService.getAll()

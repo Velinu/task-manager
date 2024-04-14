@@ -6,7 +6,7 @@ class categoryService implements iCategoryService{
 
     async getById(id: number) {
         try{
-            const res = await categoryModel.find({id: id})
+            const res = await categoryModel.find({id: id}, {_id: 0})
             if (res.length == 0){
                 throw new Error();
             } 
@@ -19,7 +19,7 @@ class categoryService implements iCategoryService{
 
     async getAll() {
         try{
-            const res = await categoryModel.find()
+            const res = await categoryModel.find({}, {_id: 0})
             if (res.length == 0){
                 throw new Error();
             } 
@@ -31,7 +31,7 @@ class categoryService implements iCategoryService{
 
     async post(category: Category) {
         try{
-            const lastCategory = await categoryModel.findOne({}, {}, { sort: { id: -1 } });
+            const lastCategory = await categoryModel.findOne({}, {_id: 0}, { sort: { id: -1 } });
             if (lastCategory) {
                 category.id = lastCategory.id + 1
             } else {
@@ -49,7 +49,8 @@ class categoryService implements iCategoryService{
 
     async patch(id: number,dataPatch: any) {
         try{
-            const categoryPatch = await categoryModel.findOneAndUpdate({id: id}, dataPatch)
+            await categoryModel.findOneAndUpdate({id: id}, dataPatch)
+            const categoryPatch = await categoryModel.find({id: id},{_id: 0})
             return categoryPatch;
         }catch(e) {
             throw new Error(`Error patching category: ${e}`);
@@ -58,8 +59,9 @@ class categoryService implements iCategoryService{
 
     async delete(id: number) {
        try{
-            const userDelete = await categoryModel.deleteOne({id: id})
-            return userDelete
+            const categoryDelete = await categoryModel.find({id: id}, {_id: 0})
+            await categoryModel.deleteOne({id: id})
+            return categoryDelete
        }catch(e){
             throw new Error(`Error delete category: ${e}`)
        }

@@ -1,6 +1,7 @@
 /* Atributos: ID, título, descrição, data de criação, data de conclusão, tipo, categoria (opcional), 
 status (pendente, em andamento, concluída), e usuário associado. */
 
+import { Category } from "src/model/category/categoryClass"
 import { Task } from "../../model/task/taskClass"
 import { Request, Response } from 'express'
 
@@ -13,7 +14,7 @@ export interface ITask{
     creatDate: Date
     conclDate?: Date
     type: string
-    category?: string
+    category?: Category
     status: string
     userId: number 
 }

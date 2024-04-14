@@ -6,6 +6,7 @@ import categoryController from './controllers/categoryController'
 const routes = Router()
 routes.get('/task', taskController.getAll)
 routes.get('/task/:id', taskController.getById)
+routes.get('/task/category/:category', taskController.getAllByCategory)
 routes.post('/task', taskController.post)
 routes.patch('/task/:id', taskController.patch)
 routes.delete('/task/:id', taskController.delete)
