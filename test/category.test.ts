@@ -10,13 +10,14 @@ describe('testando endpoints Category', ()=>{
         .get('/category')
         expect(res.status).toEqual(200)
     })
+
     it('Testando busca getById',async () => {
         const res = await request(app)
-        .get('/category/1')
+        .get('/category/3')
         expect(res.body).toEqual([{
-            "id": 1,
-            "nome": "teste",
-            "cor": "blue"
+            "id": 3,
+            "nome": "Hobbies",
+            "cor": "yellow"
         }])
     })
 
@@ -24,33 +25,37 @@ describe('testando endpoints Category', ()=>{
         const res = await request(app)
             .post('/category')
             .send({
-            "nome": "testando post",
-            "cor": "azulpora" 
+            "nome": "categoria de teste",
+            "cor": "cor de teste" 
         })
-        expect(res.body).toEqual({
-            "id": 5, // ultimo id salvo
-            "nome": "testando post",
-            "cor": "azulpora" 
-        })
+        expect(res.body).toEqual({"cor": "cor de teste", "id": 4, "nome": "categoria de teste"})
     })
 
     it('Testando delete',async () => {
         const res = await request(app)
-            .delete('/category/5')
-        expect(res.body).toEqual({})
+            .delete('/category/4')
+        expect(res.body).toEqual([{"cor": "cor de teste", "id": 4, "nome": "categoria de teste"}])
     })
 
     it('Testando patch',async () => {
+        await request(app)
+            .post('/category')
+            .send({
+            "nome": "categoria de teste",
+            "cor": "cor de teste" 
+        })
         const res = await request(app)
-            .patch('/category/1').send({
-                "nome": "testando patch",
-                "cor": "azulpora" 
+            .patch('/category/4').send({
+                "nome": "patch",
+                "cor": "teste patch" 
             })
         expect(res.body).toEqual([{
-            "id": 1,
-            "nome": "testando patch",
-            "cor": "azulpora" 
+            "id": 4,
+            "nome": "patch",
+            "cor": "teste patch" 
         }])
+        await request(app)
+            .delete('/category/4')
     })
 })
 
