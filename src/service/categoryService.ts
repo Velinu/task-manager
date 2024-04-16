@@ -59,9 +59,8 @@ class categoryService implements iCategoryService{
 
     async delete(id: number) {
        try{
-            const categoryDelete = await categoryModel.find({id: id}, {_id: 0})
             await categoryModel.deleteOne({id: id})
-            return categoryDelete
+            return
        }catch(e){
             throw new Error(`Error delete category: ${e}`)
        }

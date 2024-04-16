@@ -51,7 +51,7 @@ class categoryController implements iCategoryController{
     async delete(req: Request, res: Response) {
         try{
             const categoryDelete = await categoryService.delete(Number(req.params.id))
-            res.status(200).send(categoryDelete)
+            res.status(204).send(categoryDelete)
         }catch(e){
             res.status(500).send(`Não foi possível excluír a category: ${e}`)
         }

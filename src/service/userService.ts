@@ -6,7 +6,7 @@ class userService implements iUserService{
 
     async getById(id: number) {
         try{
-            const res = await userModel.find({id: id})
+            const res = await userModel.find({id: id}, {_id: 0})
             if (res.length == 0){
                 throw new Error("No category found");
             } 
@@ -19,7 +19,7 @@ class userService implements iUserService{
 
     async getAll() {
         try{
-            const res = await userModel.find()
+            const res = await userModel.find({}, {_id: 0})
             if (res.length == 0){
                 throw new Error();
             } 
@@ -49,7 +49,8 @@ class userService implements iUserService{
 
     async patch(id: number,dataPatch: any) {
         try{
-            const userPatch = await userModel.findOneAndUpdate({id: id}, dataPatch)
+            await userModel.findOneAndUpdate({id: id}, dataPatch)
+            const userPatch = await userModel.find({id: id}, {_id: 0})
             return userPatch;
         }catch(e) {
             throw new Error(`Error patching task: ${e}`);
@@ -58,8 +59,8 @@ class userService implements iUserService{
 
     async delete(id: number) {
        try{
-            const userDelete = await userModel.deleteOne({id: id})
-            return userDelete
+            await userModel.deleteOne({id: id})
+            return
        }catch(e){
             throw new Error(`Error delete task: ${e}`)
        }

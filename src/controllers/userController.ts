@@ -38,11 +38,11 @@ class userController implements iUserController{
 
     async patch(req: Request, res: Response) {
         try{
-            const { title, descr, type, 
-                    status, category, conclDate } = req.body;
+            const { userName, peso, senha, 
+                email, } = req.body;
 
-            const task = await userService.patch(Number(req.params.id), { title, descr, type, 
-                                                                           status, category, conclDate })
+            const task = await userService.patch(Number(req.params.id), { userName, peso, senha, 
+                                                                          email, })
             
             res.status(200).send(task)
         }catch(e){
@@ -54,8 +54,8 @@ class userController implements iUserController{
      
     async delete(req: Request, res: Response) {
         try{
-            const userDelete = userService.delete(Number(req.params.id))
-            res.status(200).send(userDelete)
+            const userDelete = await userService.delete(Number(req.params.id))
+            res.status(204).send(userDelete)
         }catch(e){
             res.status(500).send(`Não foi possível excluír o User: ${e}`)
         }
