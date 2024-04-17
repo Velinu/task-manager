@@ -80,3 +80,60 @@ describe('testando endpoints Task', ()=>{
     }) 
 })
 
+describe('testando endpoints extras', ()=>{
+    
+
+    it('Testando busca por categoria',async () => {
+        await request(app)
+        .post('/task')
+        .send({
+            "title": "primeira task",
+            "descr": "primeira task para teste",
+            "type":  "primeira task",
+            "categoryId": 1,
+            "userId": 1
+        })
+
+    await request(app)
+    .post('/task')
+    .send({
+        "title": "primeira task",
+        "descr": "primeira task para teste",
+        "type":  "primeira task",
+        "categoryId": 1,
+        "userId": 3
+    })
+
+    await request(app)
+    .post('/task')
+    .send({
+        "title": "primeira task",
+        "descr": "primeira task para teste",
+        "type":  "primeira task",
+        "categoryId": 2,
+        "userId": 3
+    })
+
+        const res = await request(app)
+        .get('/task/category/1')
+        expect(res.body).toEqual([{
+            "id": 1,
+            "title": "primeira task",
+            "status": "Em andamento",
+            "descr": "primeira task para teste",
+            "type":  "primeira task",
+            "categoryId": 1,
+            "userId": 1,
+        },
+        {
+            "id": 2,
+            "title": "primeira task",
+            "status": "Em andamento",
+            "descr": "primeira task para teste",
+            "type":  "primeira task",
+            "categoryId": 1,
+            "userId": 3,
+        }])
+    }) 
+})
+

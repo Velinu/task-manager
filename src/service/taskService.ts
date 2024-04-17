@@ -70,17 +70,11 @@ class taskService implements iTaskService{
 
     async getAllByCategory(categoryId: number){
         try{
-            let arr: Task[] = [];
             const res = await taskModel.find({categoryId: categoryId}, {_id: 0})
-            res.forEach(function(e) {
-                arr.push()
-            })
-            const ret = arr.find((e) => e.categoryId === categoryId) 
-
             if (res.length == 0){
                 throw new Error();
             } 
-            return ret 
+            return res 
         }catch(e){
             throw new Error();
         }

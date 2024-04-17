@@ -72,7 +72,7 @@ class taskController implements iTaskController{
     async getAllByCategory(req: Request, res: Response){
         try{
             const tasks = await taskService.getAllByCategory(Number(req.params.category))
-            tasks
+            console.log(tasks)
             res.send(tasks)
         }catch(e){
             res.status(404).send('Nenhuma task encontrada')
