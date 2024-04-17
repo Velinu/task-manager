@@ -15,26 +15,22 @@ class taskController implements iTaskController{
 
     async post(req: Request, res: Response) {
         try{
-            const { title, descr, creatDate, type, 
-                    userId, category } = req.body;
-
-            if ( title && descr && creatDate && type && userId) {
-                
+            const { title, descr, type, 
+                    userId, categoryId, creatDate } = req.body;
+            
                 const task = new Task(
                     0,
                     title,
                     descr,
-                    new Date(creatDate),
+                    creatDate,
                     type,
                     "Em andamento",
                     userId,
-                    category,);
+                    categoryId,);
                 
+                    console.log(categoryId)
                 await taskService.post(task);
                 res.status(200).send(task)    
-            }else{
-                throw new Error("Atributos faltando")
-            }
         }catch(e){
             res.status(500).send(`Não foi possível criar a task: ${e}`)
         }
@@ -43,10 +39,10 @@ class taskController implements iTaskController{
     async patch(req: Request, res: Response) {
         try{
             const { title, descr, type, 
-                    status, category, conclDate } = req.body;
+                    status, categoryId, conclDate } = req.body;
 
             const task = await taskService.patch(Number(req.params.id), { title, descr, type, 
-                                                                           status, category, conclDate })
+                                                                           status, categoryId, conclDate })
             
             res.status(200).send(task)
         }catch(e){
@@ -59,7 +55,7 @@ class taskController implements iTaskController{
     async delete(req: Request, res: Response) {
         try{
             const taskDeletes = taskService.delete(Number(req.params.id))
-            res.status(200).send(taskDeletes)
+            res.status(204).send(taskDeletes)
         }catch(e){
             res.status(500).send(`Não foi possível excluír a task: ${e}`)
         }

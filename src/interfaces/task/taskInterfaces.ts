@@ -14,7 +14,7 @@ export interface ITask{
     creatDate: Date
     conclDate?: Date
     type: string
-    category?: Category
+    categoryId: number
     status: string
     userId: number 
 }

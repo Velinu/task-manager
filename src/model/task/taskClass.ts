@@ -13,7 +13,7 @@ export class Task implements ITask{
     creatDate: Date;
     conclDate?: Date;
     type: string;
-    category: Category;
+    categoryId: number;
     status: string;
     userId: number;
     constructor(
@@ -24,7 +24,7 @@ export class Task implements ITask{
         type: string,
         status: string,
         userId: number,
-        category: number,
+        categoryId: number,
         conclDate?: Date,
     ) {
         
@@ -33,12 +33,11 @@ export class Task implements ITask{
         this.descr = descr;
         this.creatDate = creatDate;
         this.type = type;
-        this.category = new Category(0, '', '')
+        this.categoryId = categoryId;
         this.status = status;
         this.userId = userId;
         if(conclDate !== undefined){
             this.conclDate = conclDate;
         }
-        getCategory(category).then((category) => {this.category = category})
     }
 }

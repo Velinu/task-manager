@@ -7,8 +7,8 @@ const taskSchema: Schema = new Schema<ITask>({
     creatDate: { type: Date},
     conclDate: { type: Date, required: false},
     type: { type: String,  max: 20},
-    category: { type: String, required: false, max: 20},
-    status: {   enum: ["Pendente", "Em andamento", "Concluída"]},
+    categoryId: { type: Number, required: false, max: 20},
+    status: {type: String },
     userId: { type: Number},
 } , {versionKey: false})
 export default taskSchema
