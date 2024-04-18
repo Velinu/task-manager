@@ -4,10 +4,12 @@ import {UserRepository} from "../repositories/user.repository"
 import { HttpStatus } from "../enums/httpCodes.enum";
 import { Messages } from "../enums/messages.enum";
 import { Errors } from "../enums/errors.enums";
-
+import TaskService from '../services/task.service'
+import { TaskRepository } from "../repositories/task.repository";
 
 class UserService {
     private readonly user = new UserRepository()
+    private readonly task = new TaskRepository()
     async create(body: any) {   
         const newUser = await this.user.create(body)
         if(newUser){
@@ -23,12 +25,12 @@ class UserService {
         )
     }
 
-    async findAll(body: any) {
-        const allCategories = await this.user.findAll()
-        if(allCategories){
+    async findAll() {
+        const allUsers = await this.user.findAll()
+        if(allUsers){
             return new ResponseModel(
                 HttpStatus.OK,
-                allCategories,
+                allUsers,
                 
             )
         }
@@ -49,6 +51,20 @@ class UserService {
         return new ResponseModel(
             HttpStatus.NOT_FOUND,
             Errors.NOT_FOUND_ERROR,
+        )
+    }
+
+    async findAllTasks(id: number){
+        const tasks = await this.task.find({userId: id})
+        if(tasks){
+            return new ResponseModel(
+                HttpStatus.OK,
+                tasks
+            )
+        }
+        return new ResponseModel(
+            HttpStatus.BAD_REQUEST,
+            Errors.UPDATE_ERROR,
         )
     }
 
@@ -79,7 +95,6 @@ class UserService {
             Errors.UPDATE_ERROR,
         )
     }
-    
 }
 
 export default new UserService();

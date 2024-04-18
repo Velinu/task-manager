@@ -1,21 +1,20 @@
 
 import { ResponseModel } from "../utils/response";
-import {CategoryRepository} from "../repositories/category.repository"
+import {TaskRepository} from "../repositories/task.repository"
 import { HttpStatus } from "../enums/httpCodes.enum";
 import { Messages } from "../enums/messages.enum";
 import { Errors } from "../enums/errors.enums";
 
 
-class CategoryService {
-    private readonly category = new CategoryRepository()
-
-    async create(body: any) {        
-        const newCategory = await this.category.create(body)
-        if(newCategory){
+class TaskService {
+    private readonly task = new TaskRepository()
+    async create(body: any) {
+        const newTask = await this.task.create(body);
+        if(newTask){
             return new ResponseModel(
                 HttpStatus.CREATED,
                 Messages.CREATED,
-                newCategory
+                newTask
             )
         }
         return new ResponseModel(
@@ -25,11 +24,11 @@ class CategoryService {
     }
 
     async findAll() {
-        const allCategories = await this.category.findAll()
-        if(allCategories){
+        const allTasks = await this.task.findAll()
+        if(allTasks){
             return new ResponseModel(
                 HttpStatus.OK,
-                allCategories,
+                allTasks,
                 
             )
         }
@@ -40,11 +39,11 @@ class CategoryService {
     }
     
     async findById(body: any) {
-        const category = await this.category.find({id: Number(body)})
-        if(category){
+        const task = await this.task.find({id: Number(body)})
+        if(task){
             return new ResponseModel(
                 HttpStatus.OK,
-                category,
+                task,
             )
         }
         return new ResponseModel(
@@ -53,12 +52,24 @@ class CategoryService {
         )
     }
 
+    async findUserTesks(body: any){
+        const tasks = await this.task.find({userId: body.id})
+        console.log(tasks)
+        if(tasks){
+            tasks
+        }
+        return new ResponseModel(
+            HttpStatus.NOT_FOUND,
+            Errors.NOT_FOUND_ERROR,
+        ) 
+    }
+
     async patchOneById(id:Number, body: any) {
-        const category = await this.category.updateOneById({id: id}, body)
-        if(category){
+        const task = await this.task.updateOneById({id: id}, body)
+        if(task){
             return new ResponseModel(
                 HttpStatus.OK,
-                category,
+                task,
             )
         }
         return new ResponseModel(
@@ -68,11 +79,11 @@ class CategoryService {
     }
 
     async deleteOneById(id: number) {
-        const category = await this.category.deleteOneById({id: id})
-        if(category){
+        const task = await this.task.deleteOneById({id: id})
+        if(task){
             return new ResponseModel(
                 HttpStatus.NO_CONTENT,
-                category,
+                task,
             )
         }
         return new ResponseModel(
@@ -81,6 +92,7 @@ class CategoryService {
         )
     }
     
+    
 }
 
-export default new CategoryService();
+export default new TaskService();

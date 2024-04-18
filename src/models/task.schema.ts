@@ -26,20 +26,8 @@ const TaskSchema = new Schema({
         required: [true, 'Complete Date']
     },
     category: {
-        type: {
-            id: {
-                type: Number,
-                required: [true, 'category.id']
-            },
-            name: {
-                type: String,
-                required: [true, 'category.name']
-            },
-            color: {
-                type: String,
-                required: [true, 'category.color']
-            }
-        }
+        type:Number,
+        required: [true, 'Category']
     },
     status: {
         type: String,

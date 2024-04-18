@@ -8,7 +8,7 @@ class CategoryController {
     }
 
     async getAll(req: Request, res: Response) {
-        const result = await categoryService.findAll(req.body)
+        const result = await categoryService.findAll()
         return res.status(result!.statusCode).send(result!.message)
     }
 

@@ -4,11 +4,7 @@ export interface iTask{
     description: string
     creationDate: Date
     completeDate: Date
-    category: {
-        id: number
-        name: string
-        color: string
-    }
+    category: Number
     status: string
     userId: number
 }
