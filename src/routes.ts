@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import categoryController from './controller/category.controller'
+import userController from './controller/user.controller'
 
 const routes = Router()
 /* routes.get('/task', taskController.getAll)
@@ -9,11 +10,11 @@ routes.post('/task', taskController.post)
 routes.patch('/task/:id', taskController.patch)
 routes.delete('/task/:id', taskController.delete) */
 
-/* routes.get('/user', userController.getAll)
+routes.get('/user', userController.getAll)
 routes.get('/user/:id', userController.getById)
-routes.post('/user', userController.post)
-routes.patch('/user/:id', userController.patch)
-routes.delete('/user/:id', userController.delete) */
+routes.post('/user', userController.postOne)
+routes.patch('/user/:id', userController.patchOne)
+routes.delete('/user/:id', userController.deleteOne)
 
 routes.get('/category', categoryController.getAll)
 routes.get('/category/:id', categoryController.getById)

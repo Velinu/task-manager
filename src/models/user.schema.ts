@@ -25,15 +25,6 @@ const UserSchema = new Schema({
         type: String,
         required: [true, 'email']
     },
-    refreshToken: String,
-    canLogin: {
-        type: Boolean,
-        required: [true, 'canLogin']
-    },
-    active: {
-        type: Boolean,
-        required: [true, 'active']
-    }
 }, {
     versionKey: false,
 });
