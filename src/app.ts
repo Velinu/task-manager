@@ -13,7 +13,7 @@ class App {
     }
 
     private middleware(): void {
-        this.express.use(express.json())
+        this.express.use(express.json());
     }
 
     private async database() {

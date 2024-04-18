@@ -1,26 +1,24 @@
 import { Router } from 'express'
-import taskController from './controllers/taskController'
-import userController from './controllers/userController'
-import categoryController from './controllers/categoryController'
+import categoryController from './controller/category.controller'
 
 const routes = Router()
-routes.get('/task', taskController.getAll)
+/* routes.get('/task', taskController.getAll)
 routes.get('/task/:id', taskController.getById)
 routes.get('/task/category/:category', taskController.getAllByCategory)
 routes.post('/task', taskController.post)
 routes.patch('/task/:id', taskController.patch)
-routes.delete('/task/:id', taskController.delete)
+routes.delete('/task/:id', taskController.delete) */
 
-routes.get('/user', userController.getAll)
+/* routes.get('/user', userController.getAll)
 routes.get('/user/:id', userController.getById)
 routes.post('/user', userController.post)
 routes.patch('/user/:id', userController.patch)
-routes.delete('/user/:id', userController.delete)
+routes.delete('/user/:id', userController.delete) */
 
 routes.get('/category', categoryController.getAll)
 routes.get('/category/:id', categoryController.getById)
-routes.post('/category', categoryController.post)
-routes.patch('/category/:id', categoryController.patch)
-routes.delete('/category/:id', categoryController.delete)
+routes.post('/category', categoryController.postOne)
+routes.patch('/category/:id', categoryController.patchOne)
+routes.delete('/category/:id', categoryController.deleteOne)
 
-export {routes}
+export { routes }
