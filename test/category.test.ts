@@ -10,41 +10,39 @@ describe('testando endpoints Category', ()=>{
         const res = await request(app)
             .post('/category')
             .send({
-            "nome": "categoria de teste",
-            "cor": "cor de teste" 
+            "name": "categoria de teste",
+            "color": "color de teste" 
         })
-        expect(res.body).toEqual({"cor": "cor de teste", "id": 1, "nome": "categoria de teste"})
+        expect(res.status).toEqual(201)
     })
     
     it('Testando busca getAll',async () => {
         const res = await request(app)
         .get('/category')
-        expect(res.status).toEqual(200)
+        expect(res.body).toEqual([{"color": "color de teste", "id": 1, "name": "categoria de teste"}])
     })
 
     it('Testando busca getById',async () => {
         const res = await request(app)
         .get('/category/1')
-        expect(res.body).toEqual([{
+        expect(res.body).toEqual({
             "id": 1,
-            "nome": "categoria de teste",
-            "cor": "cor de teste"
-        }])
+            "name": "categoria de teste",
+            "color": "color de teste"
+        })
     })
 
     it('Testando patch',async () => {
         const res = await request(app)
             .patch('/category/1').send({
-                "nome": "patch",
-                "cor": "teste patch" 
+                "name": "patch",
+                "color": "teste patch" 
             })
-        expect(res.body).toEqual([{
+        expect(res.body).toEqual({
             "id": 1,
-            "nome": "patch",
-            "cor": "teste patch" 
-        }])
-        await request(app)
-            .delete('/category/1')
+            "name": "patch",
+            "color": "teste patch" 
+        })
     })
 
     it('Testando delete',async () => {

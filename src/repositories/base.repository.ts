@@ -19,11 +19,11 @@ export class BaseRepository<T extends Document> {
     }
 
     async findAll(): Promise<T[] | null>{
-        return await this.model.find({})
+        return await this.model.find({}, {_id: 0})
     }
 
     async find(filter: FilterQuery<T>): Promise<T[] | null> {
-        return await this.model.find(filter);
+        return await this.model.findOne(filter, {_id: 0});
     }
 
     async updateOneById(filter: FilterQuery<T>, update: UpdateWithAggregationPipeline | UpdateQuery<T>):  Promise<T | null>{
