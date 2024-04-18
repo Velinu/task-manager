@@ -2,7 +2,7 @@ import { describe, it, expect } from "@jest/globals";
 import request from 'supertest';
 import app from "../src/app";
 
-describe('testando endpoints Category', ()=>{
+describe('testando endpoints User', ()=>{
 
     it('Testando post',async () => {
         const res = await request(app)

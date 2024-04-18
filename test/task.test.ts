@@ -4,7 +4,7 @@ import { describe, it, expect } from "@jest/globals";
 import request from 'supertest';
 import app from "../src/app";
 
-describe('testando endpoints Category', ()=>{
+describe('testando endpoints Task', ()=>{
 
     it('Testando post',async () => {
         request(app)
@@ -128,10 +128,11 @@ describe('testando endpoints Category', ()=>{
                             .get('/user/1/tasks')
         
         expect(res.body).toEqual([{
+            "id": 1,
             "title": "Título da Tarefa",
             "description": "Descrição da tarefa",
-            "creationDate": "2024-04-18T12:00:00Z",
-            "completeDate": "2024-04-20T12:00:00Z",
+            "completeDate": "2024-04-20T12:00:00.000Z",
+            "creationDate": "2024-04-18T12:00:00.000Z",
             "category": 2,
             "status": "Em andamento",
             "userId": 1

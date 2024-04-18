@@ -24,7 +24,7 @@ class TaskService {
     }
 
     async findAll() {
-        const allTasks = await this.task.findAll()
+        const allTasks = await this.task.find({})
         if(allTasks){
             return new ResponseModel(
                 HttpStatus.OK,
@@ -39,7 +39,7 @@ class TaskService {
     }
     
     async findById(body: any) {
-        const task = await this.task.find({id: Number(body)})
+        const task = await this.task.findById({id: Number(body)})
         if(task){
             return new ResponseModel(
                 HttpStatus.OK,
@@ -54,7 +54,6 @@ class TaskService {
 
     async findUserTesks(body: any){
         const tasks = await this.task.find({userId: body.id})
-        console.log(tasks)
         if(tasks){
             tasks
         }

@@ -26,7 +26,7 @@ class UserService {
     }
 
     async findAll() {
-        const allUsers = await this.user.findAll()
+        const allUsers = await this.user.find({})
         if(allUsers){
             return new ResponseModel(
                 HttpStatus.OK,
@@ -41,7 +41,7 @@ class UserService {
     }
     
     async findById(body: any) {
-        const User = await this.user.find({id: Number(body)})
+        const User = await this.user.findById({id: Number(body)})
         if(User){
             return new ResponseModel(
                 HttpStatus.OK,

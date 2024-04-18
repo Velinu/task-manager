@@ -18,11 +18,11 @@ export class BaseRepository<T extends Document> {
         return await this.model.findOne({}, {}, {}).sort({ id: -1 }).limit(1)
     }
 
-    async findAll(): Promise<T[] | null>{
-        return await this.model.find({}, {_id: 0})
+    async find(filter: FilterQuery<T>): Promise<T[] | null> {
+        return await this.model.find(filter, {_id: 0});
     }
 
-    async find(filter: FilterQuery<T>): Promise<T[] | null> {
+    async findById(filter: FilterQuery<T>): Promise<T[] | null> {
         return await this.model.findOne(filter, {_id: 0});
     }
 

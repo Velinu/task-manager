@@ -25,7 +25,7 @@ class CategoryService {
     }
 
     async findAll() {
-        const allCategories = await this.category.findAll()
+        const allCategories = await this.category.find({})
         if(allCategories){
             return new ResponseModel(
                 HttpStatus.OK,
@@ -40,7 +40,7 @@ class CategoryService {
     }
     
     async findById(body: any) {
-        const category = await this.category.find({id: Number(body)})
+        const category = await this.category.findById({id: Number(body)})
         if(category){
             return new ResponseModel(
                 HttpStatus.OK,
