@@ -96,7 +96,7 @@ describe('testando endpoints Task', ()=>{
                 "creationDate": "2024-04-18T12:00:00Z",
                 "completeDate": "2024-04-20T12:00:00Z",
                 "category": 2,
-                "status": "Em andamento",
+                "status": "Concluido",
                 "userId": 1
             })
 
@@ -120,7 +120,7 @@ describe('testando endpoints Task', ()=>{
                 "creationDate": "2024-04-18T12:00:00Z",
                 "completeDate": "2024-04-20T12:00:00Z",
                 "category": 1,
-                "status": "Em andamento",
+                "status": "Pendente",
                 "userId": 3
             })
 
@@ -134,9 +134,24 @@ describe('testando endpoints Task', ()=>{
             "completeDate": "2024-04-20T12:00:00.000Z",
             "creationDate": "2024-04-18T12:00:00.000Z",
             "category": 2,
-            "status": "Em andamento",
+            "status": "Concluido",
             "userId": 1
         }])
     })    
+    it('Teste get todas as tarefas pendentes ou concluidas', async () =>{
+        const res = await request(app)
+                            .get('/task/status/pending')
+
+        expect(res.body).toEqual([{
+            "id": 3,
+            "title": "Título da Tarefa",
+            "description": "Descrição da tarefa",
+            "creationDate": "2024-04-18T12:00:00.000Z",
+            "completeDate": "2024-04-20T12:00:00.000Z",
+            "category": 1,
+            "status": "Pendente",
+            "userId": 3
+        }])
+    })
 })
 

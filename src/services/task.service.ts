@@ -52,10 +52,27 @@ class TaskService {
         )
     }
 
-    async findUserTesks(body: any){
+    async findUserTasks(body: any){
         const tasks = await this.task.find({userId: body.id})
         if(tasks){
-            tasks
+            return new ResponseModel(
+                HttpStatus.OK,
+                tasks,
+            )
+        }
+        return new ResponseModel(
+            HttpStatus.NOT_FOUND,
+            Errors.NOT_FOUND_ERROR,
+        ) 
+    }
+
+    async findStatus(){
+        const tasks = await this.task.find({$or: [{ status: "Concluído" },{ status: "Pendente" }]})
+        if(tasks){
+            return new ResponseModel(
+                HttpStatus.OK,
+                tasks,
+            )
         }
         return new ResponseModel(
             HttpStatus.NOT_FOUND,
