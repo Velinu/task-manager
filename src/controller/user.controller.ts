@@ -22,6 +22,11 @@ class UserController {
         return res.status(result!.statusCode).send(result.message)
     }
 
+    async countTasks(req: Request, res: Response){
+        const result = await userService.countTasks(Number(req.params.id))
+        return res.status(result!.statusCode).send(result.message)
+    }
+
     async patchOne(req: Request, res: Response){
         const result = await userService.patchOneById(Number(req.params.id), req.body)
         return res.status(result.statusCode).send(result.message)

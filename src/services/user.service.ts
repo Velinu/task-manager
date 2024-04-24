@@ -64,7 +64,30 @@ class UserService {
         }
         return new ResponseModel(
             HttpStatus.BAD_REQUEST,
-            Errors.UPDATE_ERROR,
+            Errors.NOT_FOUND_ERROR,
+        )
+    }
+
+    async countTasks(id: number){
+        const tasks = await this.task.find({userId: id})
+        if(tasks){
+            if(tasks.length > 0){
+                const lenght = tasks.length
+                return new ResponseModel(
+                    HttpStatus.OK,
+                    {
+                        length: lenght
+                    },
+                )
+            }
+            return new ResponseModel(
+                HttpStatus.BAD_REQUEST,
+                Errors.NOT_FOUND_ERROR,
+            )
+        }
+        return new ResponseModel(
+            HttpStatus.BAD_REQUEST,
+            Errors.NOT_FOUND_ERROR,
         )
     }
 
