@@ -6,7 +6,7 @@ import taskController from './controller/task.controller'
 const routes = Router()
 routes.get('/task', taskController.getAll)
 routes.get('/task/:id', taskController.getById)
-//routes.get('/task/category/:category', taskController.getAllByCategory)
+routes.get('/task/category/:id', taskController.getAllByCategory)
 routes.get('/task/status/pending' ,taskController.getByStatus)
 routes.post('/task', taskController.postOne)
 routes.patch('/task/:id', taskController.patchOne)

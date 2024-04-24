@@ -80,6 +80,20 @@ class TaskService {
         ) 
     }
 
+    async findByCategory(id: number) {
+        const tasks = await this.task.find({category: id})
+        if(tasks){
+            return new ResponseModel(
+                HttpStatus.OK,
+                tasks,
+            )
+        }
+        return new ResponseModel(
+            HttpStatus.NOT_FOUND,
+            Errors.NOT_FOUND_ERROR,
+        )
+    }
+
     async patchOneById(id:Number, body: any) {
         const task = await this.task.updateOneById({id: id}, body)
         if(task){

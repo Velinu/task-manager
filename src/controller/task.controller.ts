@@ -22,6 +22,11 @@ class UserController {
         return res.status(result.statusCode).send(result.message)
     }
 
+    async getAllByCategory(req: Request, res: Response) {
+        const result = await taskService.findByCategory(Number(req.params.id))
+        return res.status(result.statusCode).send(result.message)
+    }
+
 
     async patchOne(req: Request, res: Response){
         const result = await taskService.patchOneById(Number(req.params.id), req.body)
@@ -31,7 +36,7 @@ class UserController {
     async deleteOne(req: Request, res: Response){
         const result = await taskService.deleteOneById(Number(req.params.id))
         return res.status(result.statusCode).send(result.message)
-    }
+    } 
 }
 
 export default new UserController();

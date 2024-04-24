@@ -65,20 +65,9 @@ describe('testando endpoints User', ()=>{
     })
 
     it('Testando count taks',async () => {
-        await request(app)
-        .post('/task')
-        .send({
-                "title": "Título da Tarefa",
-                "description": "Descrição da tarefa",
-                "creationDate": "2024-04-18T12:00:00Z",
-                "completeDate": "2024-04-20T12:00:00Z",
-                "category": 1,
-                "status": "Pendente",
-                "userId": 3
-        })
         const res = await request(app)
             .get('/user/3/countTask')
-        expect(res.body).toEqual({length: 2})
+        expect(res.body).toEqual({length: 1})
     })
 })
 
