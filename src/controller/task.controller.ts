@@ -27,6 +27,10 @@ class UserController {
         return res.status(result.statusCode).send(result.message)
     }
 
+    async getLargestDescr(req: Request, res: Response){
+        const result = await taskService.getLargestDescr()
+        return res.status(result.statusCode).send(result.message)
+    } 
 
     async patchOne(req: Request, res: Response){
         const result = await taskService.patchOneById(Number(req.params.id), req.body)

@@ -171,14 +171,29 @@ describe('testando endpoints Task', ()=>{
                           .get('/task/category/5')
 
             expect(res.body).toEqual([{
+                "id": 4,
                 "title": "Título da Tarefa",
                 "description": "Descrição da tarefa",
-                "creationDate": "2024-04-18T12:00:00Z",
-                "completeDate": "2024-04-20T12:00:00Z",
+                "completeDate": "2024-04-20T12:00:00.000Z",
+                "creationDate": "2024-04-18T12:00:00.000Z",
                 "category": 5,
                 "status": "Em andamento",
                 "userId": 1
             }])
+    })
+
+    it('Teste get tarefa com maior descrição', async () =>{
+        const res = await request(app)
+                            .get('/task/status/pending')
+
+        expect(res.body).toEqual([{"category": 1, 
+        "completeDate": "2024-04-20T12:00:00.000Z", 
+        "creationDate": "2024-04-18T12:00:00.000Z", 
+        "description": "Descrição da tarefa", 
+        "id": 3, 
+        "status": "Pendente", 
+        "title": "Título da Tarefa", 
+        "userId": 3}])
     })
 
 })

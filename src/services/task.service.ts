@@ -108,6 +108,24 @@ class TaskService {
         )
     }
 
+    async getLargestDescr(){
+        const tasks = await this.task.find({})
+        if(tasks){
+            const ret = tasks.reduce((maior, itemAtual) => {
+                return itemAtual.description.length > maior.description.length ? itemAtual : maior;
+            }, tasks[0])
+            return new ResponseModel(
+                HttpStatus.OK,
+                ret,
+            )
+        }
+        return new ResponseModel(
+            HttpStatus.BAD_REQUEST,
+            Errors.NOT_FOUND_ERROR,
+        )
+        
+    }
+
     async deleteOneById(id: number) {
         const task = await this.task.deleteOneById({id: id})
         if(task){

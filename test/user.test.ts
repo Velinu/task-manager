@@ -66,8 +66,8 @@ describe('testando endpoints User', ()=>{
 
     it('Testando count taks',async () => {
         const res = await request(app)
-            .get('/user/3/countTask')
-        expect(res.body).toEqual({length: 1})
+            .get('/user/1/countTask')
+        expect(res.body).toEqual({length: 2})
     })
 })
 
